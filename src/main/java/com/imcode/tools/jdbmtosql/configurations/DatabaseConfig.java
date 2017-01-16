@@ -51,7 +51,7 @@ public class DatabaseConfig {
         properties.put("hibernate.max_fetch_depth", 3);
         properties.put("hibernate.jdbc.fetch_size", 50);
         properties.put("hibernate.jdbc.batch_size", 10);
-        properties.put("hibernate.show_sql", true);
+        properties.put("hibernate.show_sql", false);
         properties.put("hibernate.format_sql", true);
         properties.put("hibernate.use_sql_comments", true);
         properties.put("hibernate.dialect", environment.getRequiredProperty("HibernateDialect"));
