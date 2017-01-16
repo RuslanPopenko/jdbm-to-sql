@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by ruslan on 16.01.17.
@@ -26,6 +29,8 @@ public class DataReceiverImpl implements DataReceiver {
     private RecordManager recordManager;
     private BTree index;
     private Serializer serializer;
+    protected Lock lock = new ReentrantLock();
+
 
     public void receive() throws IOException {
 
@@ -50,6 +55,33 @@ public class DataReceiverImpl implements DataReceiver {
             index = BTree.createInstance(recordManager, comparator, new LongSerializer(), serializer, 16);
             recordManager.setNamedObject("index", index.getRecid());
         }
+
+        while (true)
+        {
+            try
+            {
+                lock.tryLock( 1000, TimeUnit.MILLISECONDS );
+                break;
+            } catch (InterruptedException e)
+            {
+                // Try again
+            }
+        }
+
+        final TupleBrowser browser = index.browse(0L);
+
+        Tuple tuple = new Tuple();
+
+        while (browser.getNext(tuple))
+        {
+            byte[] eventData = (byte[]) tuple.getValue();
+            String eventJson = new String(eventData, "UTF-8");
+
+        }
+
+
+
+
 
 
 
