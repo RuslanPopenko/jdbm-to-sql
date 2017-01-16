@@ -28,7 +28,7 @@ public class DatabaseConfig {
 
         dataSource.setDriverClassName(environment.getRequiredProperty("JdbcDriver"));
         dataSource.setUrl(environment.getRequiredProperty("JdbcUrl"));
-        dataSource.setUsername(environment.getRequiredProperty("User"));
+        dataSource.setUsername(environment.getRequiredProperty("Username"));
         dataSource.setPassword(environment.getRequiredProperty("Password"));
 
         return dataSource;
@@ -48,10 +48,11 @@ public class DatabaseConfig {
 
     private Properties hibProperties() {
         Properties properties = new Properties();
+        properties.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
         properties.put("hibernate.max_fetch_depth", 3);
         properties.put("hibernate.jdbc.fetch_size", 50);
         properties.put("hibernate.jdbc.batch_size", 10);
-        properties.put("hibernate.show_sql", false);
+        properties.put("hibernate.show_sql", true);
         properties.put("hibernate.format_sql", true);
         properties.put("hibernate.use_sql_comments", true);
         properties.put("hibernate.dialect", environment.getRequiredProperty("HibernateDialect"));
