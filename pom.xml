@@ -19,8 +19,6 @@
         <jackson-databind.version>2.8.5</jackson-databind.version>
         <org.slf4j-version>1.7.5</org.slf4j-version>
         <mysql.version>5.1.39</mysql.version>
-        <java-source.version>1.7</java-source.version>
-        <java-target.version>1.7</java-target.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -162,8 +160,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.2</version>
                     <configuration>
-                        <source>${java-source.version>}</source>
-                        <target>${java-target.version}</target>
+                        <source>1.7</source>
+                        <target>1.7</target>
                     </configuration>
                 </plugin>
             </plugins>

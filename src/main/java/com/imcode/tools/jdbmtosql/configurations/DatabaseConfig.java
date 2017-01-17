@@ -1,7 +1,12 @@
 package com.imcode.tools.jdbmtosql.configurations;
 
+import com.imcode.tools.jdbmtosql.enums.DatabasesDescription;
+import com.imcode.tools.jdbmtosql.tranfer.interfaces.DatabaseLoader;
+import jdbm.btree.BTree;
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -12,15 +17,24 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
+@ComponentScan({"com.imcode.tools.jdbmtosql.tranfer.services"})
 @EnableTransactionManagement
 @EnableJpaRepositories("com.imcode.tools.jdbmtosql.repositories")
 public class DatabaseConfig {
 
     @Resource
     private Environment environment;
+
+    final DatabaseLoader databaseLoader;
+
+    @Autowired
+    public DatabaseConfig(DatabaseLoader databaseLoader) {
+        this.databaseLoader = databaseLoader;
+    }
 
     @Bean
     public DataSource dataSource() {
@@ -68,6 +82,16 @@ public class DatabaseConfig {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
+    }
+
+    @Bean("dataDb")
+    public BTree loadDataDb() throws IOException {
+        return databaseLoader.load(DatabasesDescription.DATA);
+    }
+
+    @Bean("eventsDb")
+    public BTree loadEventsDb() throws IOException {
+        return databaseLoader.load(DatabasesDescription.EVENTS);
     }
 
 }

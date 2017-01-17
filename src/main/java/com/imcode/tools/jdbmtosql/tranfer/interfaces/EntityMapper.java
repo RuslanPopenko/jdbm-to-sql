@@ -1,6 +1,7 @@
 package com.imcode.tools.jdbmtosql.tranfer.interfaces;
 
-import com.imcode.tools.jdbmtosql.enums.DatabaseDescription;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.imcode.tools.jdbmtosql.enums.DatabasesDescription;
 
 import java.io.IOException;
 
@@ -9,6 +10,6 @@ import java.io.IOException;
  */
 public interface EntityMapper {
 
-    Object map(String json, DatabaseDescription databaseDescription) throws IOException;
+    Object map(String json) throws IOException;
 
 }

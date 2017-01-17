@@ -1,6 +1,6 @@
 package com.imcode.tools.jdbmtosql.tranfer.services;
 
-import com.imcode.tools.jdbmtosql.enums.DatabaseDescription;
+import com.imcode.tools.jdbmtosql.enums.DatabasesDescription;
 import com.imcode.tools.jdbmtosql.tranfer.interfaces.DatabaseLoader;
 import com.imcode.tools.jdbmtosql.utils.Constants;
 import jdbm.RecordManager;
@@ -25,9 +25,9 @@ public class DatabaseLoaderImpl implements DatabaseLoader {
     @Resource
     private Environment environment;
 
-    public BTree load(DatabaseDescription databaseDescription) throws IOException {
+    public BTree load(DatabasesDescription databasesDescription) throws IOException {
 
-        String eventStorePath = environment.getRequiredProperty(databaseDescription.getPropertyKey());
+        String eventStorePath = environment.getRequiredProperty(databasesDescription.getPropertyKey());
         Properties properties = new Properties();
 
         properties.put(RecordManagerOptions.AUTO_COMMIT, "false");
