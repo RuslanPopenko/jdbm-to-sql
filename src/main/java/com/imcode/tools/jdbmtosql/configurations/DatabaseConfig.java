@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan({"com.imcode.tools.jdbmtosql.tranfer.services"})
+@ComponentScan({"com.imcode.tools.jdbmtosql.tranfer.services.onload"})
 @EnableTransactionManagement
 @EnableJpaRepositories("com.imcode.tools.jdbmtosql.repositories")
 public class DatabaseConfig {

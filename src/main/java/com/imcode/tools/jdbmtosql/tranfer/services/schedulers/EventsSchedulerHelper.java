@@ -1,4 +1,4 @@
-package com.imcode.tools.jdbmtosql.tranfer.services;
+package com.imcode.tools.jdbmtosql.tranfer.services.schedulers;
 
 import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.entities.TransactionDomainEvents;

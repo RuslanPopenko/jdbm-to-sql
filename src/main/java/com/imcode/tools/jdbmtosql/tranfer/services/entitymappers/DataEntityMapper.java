@@ -1,4 +1,4 @@
-package com.imcode.tools.jdbmtosql.tranfer.services;
+package com.imcode.tools.jdbmtosql.tranfer.services.entitymappers;
 
 import com.imcode.tools.jdbmtosql.tranfer.interfaces.EntityMapper;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.imcode.tools.jdbmtosql.tranfer.services;
+package com.imcode.tools.jdbmtosql.tranfer.services.onload;
 
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.tranfer.interfaces.DatabaseLoader;
