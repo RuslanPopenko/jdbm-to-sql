@@ -1,6 +1,7 @@
 package com.imcode.tools.jdbmtosql.tranfer.services.schedulers;
 
 import com.imcode.tools.jdbmtosql.tranfer.interfaces.SchedulerWorker;
+import com.imcode.tools.jdbmtosql.utils.Constants;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class DataSchedulerWorker implements SchedulerWorker {
 
     @Override
-    @Scheduled(fixedRate = 100, initialDelay = 1000)
+    @Scheduled(fixedRate = Constants.SCHEDULING_FIXED_RATE, initialDelay = Constants.SCHEDULING_INITIAL_DELAY)
     public void scheduleWork() {
         // TODO: 17.01.17 create this scheduleWork
     }
