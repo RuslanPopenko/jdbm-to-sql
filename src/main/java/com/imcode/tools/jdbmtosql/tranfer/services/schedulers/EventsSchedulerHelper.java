@@ -37,7 +37,7 @@ public class EventsSchedulerHelper {
     }
 
     public DatabasesInfo findBy(HdbmDatabasesDescription description) {
-        return databasesInfoRepository.findByDatabasesDescription(description);
+        return databasesInfoRepository.findByHdbmDatabasesDescription(description);
     }
 
 

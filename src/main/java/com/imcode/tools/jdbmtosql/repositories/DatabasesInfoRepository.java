@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface DatabasesInfoRepository extends JpaRepository<DatabasesInfo, Long> {
 
-    DatabasesInfo findByDatabasesDescription(HdbmDatabasesDescription hdbmDatabasesDescription);
+    DatabasesInfo findByHdbmDatabasesDescription(HdbmDatabasesDescription hdbmDatabasesDescription);
 
 }
