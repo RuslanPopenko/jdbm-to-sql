@@ -1,7 +1,7 @@
 package com.imcode.tools.jdbmtosql.repositories;
 
 import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
-import com.imcode.tools.jdbmtosql.enums.DatabasesDescription;
+import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface DatabasesInfoRepository extends JpaRepository<DatabasesInfo, Long> {
 
-    DatabasesInfo findByDatabasesDescription(DatabasesDescription databasesDescription);
+    DatabasesInfo findByDatabasesDescription(HdbmDatabasesDescription hdbmDatabasesDescription);
 
 }

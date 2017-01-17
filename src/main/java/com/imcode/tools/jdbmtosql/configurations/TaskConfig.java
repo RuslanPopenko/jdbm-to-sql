@@ -1,6 +1,6 @@
 package com.imcode.tools.jdbmtosql.configurations;
 
-import com.imcode.tools.jdbmtosql.enums.DatabasesDescription;
+import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.*;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -31,6 +31,6 @@ public class TaskConfig implements SchedulingConfigurer {
 
     @Bean(destroyMethod="shutdown")
     public Executor taskExecutor() {
-        return Executors.newScheduledThreadPool(DatabasesDescription.values().length);
+        return Executors.newScheduledThreadPool(HdbmDatabasesDescription.values().length);
     }
 }

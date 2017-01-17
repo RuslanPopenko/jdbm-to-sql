@@ -1,6 +1,6 @@
 package com.imcode.tools.jdbmtosql.tranfer.interfaces;
 
-import com.imcode.tools.jdbmtosql.enums.DatabasesDescription;
+import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import jdbm.btree.BTree;
 
 import java.io.IOException;
@@ -10,6 +10,6 @@ import java.io.IOException;
  */
 public interface DatabaseLoader {
 
-    BTree load(DatabasesDescription databasesDescription) throws IOException;
+    BTree load(HdbmDatabasesDescription hdbmDatabasesDescription) throws IOException;
 
 }

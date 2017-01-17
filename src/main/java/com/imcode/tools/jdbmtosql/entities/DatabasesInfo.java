@@ -1,7 +1,7 @@
 package com.imcode.tools.jdbmtosql.entities;
 
 import com.imcode.tools.jdbmtosql.entities.superclasses.LongIdEntity;
-import com.imcode.tools.jdbmtosql.enums.DatabasesDescription;
+import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,17 +17,17 @@ public class DatabasesInfo extends LongIdEntity implements Serializable {
 
     @Column(unique = true)
     @Enumerated(EnumType.STRING)
-    private DatabasesDescription databasesDescription;
+    private HdbmDatabasesDescription hdbmDatabasesDescription;
 
     @Column
     private Long lastProcessedTimestamp;
 
-    public DatabasesDescription getDatabasesDescription() {
-        return databasesDescription;
+    public HdbmDatabasesDescription getHdbmDatabasesDescription() {
+        return hdbmDatabasesDescription;
     }
 
-    public void setDatabasesDescription(DatabasesDescription databasesDescription) {
-        this.databasesDescription = databasesDescription;
+    public void setHdbmDatabasesDescription(HdbmDatabasesDescription hdbmDatabasesDescription) {
+        this.hdbmDatabasesDescription = hdbmDatabasesDescription;
     }
 
     public Long getLastProcessedTimestamp() {

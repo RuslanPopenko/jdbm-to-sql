@@ -1,6 +1,6 @@
 package com.imcode.tools.jdbmtosql.configurations;
 
-import com.imcode.tools.jdbmtosql.enums.DatabasesDescription;
+import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.tranfer.interfaces.DatabaseLoader;
 import jdbm.btree.BTree;
 import org.hibernate.jpa.HibernatePersistenceProvider;
@@ -86,12 +86,12 @@ public class DatabaseConfig {
 
     @Bean("dataDb")
     public BTree loadDataDb() throws IOException {
-        return databaseLoader.load(DatabasesDescription.DATA);
+        return databaseLoader.load(HdbmDatabasesDescription.DATA);
     }
 
     @Bean("eventsDb")
     public BTree loadEventsDb() throws IOException {
-        return databaseLoader.load(DatabasesDescription.EVENTS);
+        return databaseLoader.load(HdbmDatabasesDescription.EVENTS);
     }
 
 }

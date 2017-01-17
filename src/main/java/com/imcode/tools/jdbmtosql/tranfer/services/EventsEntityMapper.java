@@ -1,10 +1,8 @@
 package com.imcode.tools.jdbmtosql.tranfer.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.imcode.tools.jdbmtosql.enums.DatabasesDescription;
 import com.imcode.tools.jdbmtosql.tranfer.interfaces.EntityMapper;
 import com.imcode.tools.jdbmtosql.utils.Constants;
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

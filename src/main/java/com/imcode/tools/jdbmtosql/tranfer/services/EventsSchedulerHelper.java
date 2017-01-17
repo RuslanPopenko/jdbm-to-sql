@@ -2,7 +2,7 @@ package com.imcode.tools.jdbmtosql.tranfer.services;
 
 import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.entities.TransactionDomainEvents;
-import com.imcode.tools.jdbmtosql.enums.DatabasesDescription;
+import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.repositories.DatabasesInfoRepository;
 import com.imcode.tools.jdbmtosql.repositories.TransactionDomainEventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class EventsSchedulerHelper {
         return databasesInfoRepository.save(databasesInfo);
     }
 
-    public DatabasesInfo findBy(DatabasesDescription description) {
+    public DatabasesInfo findBy(HdbmDatabasesDescription description) {
         return databasesInfoRepository.findByDatabasesDescription(description);
     }
 

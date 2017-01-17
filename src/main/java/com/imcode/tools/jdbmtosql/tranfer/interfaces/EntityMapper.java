@@ -1,8 +1,5 @@
 package com.imcode.tools.jdbmtosql.tranfer.interfaces;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.imcode.tools.jdbmtosql.enums.DatabasesDescription;
-
 import java.io.IOException;
 
 /**
