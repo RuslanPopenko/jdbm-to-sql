@@ -24,7 +24,11 @@ public class Constants {
     public static final long SCHEDULING_FIXED_RATE = 100L;
     public static final long SCHEDULING_INITIAL_DELAY = 1000L;
 
+    public static final String KEY_OF_OBJECT_PROPERTIES_KEY = "properties";
+    public static final String KEY_OF_OBJECT_ASSOCIATIONS_KEY = "associations";
+    public static final String KEY_OF_OBJECT_MANY_ASSOCIATIONS_KEY = "manyassociations";
     public static final String KEY_OF_ENTITY_TYPE = "type";
+    public static final String ID_PROPERTY_NAME = "identity";
 
     public static final Class EVENTS_MAP_CLASS = TransactionDomainEvents.class;
     public static final Map<String, Class> DATA_MAP_CLASSES = Collections.unmodifiableMap(dataMapClasses());

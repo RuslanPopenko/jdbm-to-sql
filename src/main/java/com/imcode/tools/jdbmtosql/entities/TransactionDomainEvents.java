@@ -24,7 +24,7 @@ public class TransactionDomainEvents extends LongIdEntity implements Serializabl
 
     // List of events for this transaction
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = ApplicationEvent.class)
-    @JoinColumn(name = "application_event_identity")
+    @JoinColumn(name = "transaction_domain_events_id")
     private List<ApplicationEvent> events;
 
     public Date getTimestamp() {
