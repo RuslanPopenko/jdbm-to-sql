@@ -2,9 +2,8 @@ package com.imcode.tools.jdbmtosql.tranfer.services.schedulehelpers;
 
 import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.entities.TransactionDomainEvents;
-import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
-import com.imcode.tools.jdbmtosql.repositories.DatabasesInfoRepository;
 import com.imcode.tools.jdbmtosql.repositories.TransactionDomainEventsRepository;
+import com.imcode.tools.jdbmtosql.tranfer.abstractimpl.AbstractSchedulerHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,21 +14,13 @@ import java.util.List;
  * Created by ruslan on 17.01.17.
  */
 @Service
-public class EventsSchedulerHelper {
+public class EventsSchedulerHelper extends AbstractSchedulerHelper {
 
     private final TransactionDomainEventsRepository transactionDomainEventsRepository;
-    private final DatabasesInfoRepository databasesInfoRepository;
 
     @Autowired
-    public EventsSchedulerHelper(TransactionDomainEventsRepository transactionDomainEventsRepository,
-                                 DatabasesInfoRepository databasesInfoRepository) {
+    public EventsSchedulerHelper(TransactionDomainEventsRepository transactionDomainEventsRepository) {
         this.transactionDomainEventsRepository = transactionDomainEventsRepository;
-        this.databasesInfoRepository = databasesInfoRepository;
-    }
-
-
-    public DatabasesInfo findBy(HdbmDatabasesDescription description) {
-        return databasesInfoRepository.findByHdbmDatabasesDescription(description);
     }
 
     @Transactional
