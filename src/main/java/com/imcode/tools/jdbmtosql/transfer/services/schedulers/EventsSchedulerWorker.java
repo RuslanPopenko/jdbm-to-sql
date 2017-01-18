@@ -4,14 +4,13 @@ import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.entities.TransactionDomainEvents;
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.EntityMapper;
-import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerWorker;
+import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
+import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerWorker;
 import com.imcode.tools.jdbmtosql.transfer.services.schedulehelpers.EventsSchedulerHelper;
 import com.imcode.tools.jdbmtosql.utils.Constants;
-import com.imcode.tools.jdbmtosql.utils.Utils;
 import jdbm.btree.BTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
@@ -22,7 +21,7 @@ import java.util.List;
  * Created by ruslan on 17.01.17.
  */
 @Component
-public class EventsSchedulerWorker implements SchedulerWorker {
+public class EventsSchedulerWorker extends AbstractSchedulerWorker {
 
     private final EventsSchedulerHelper eventsSchedulerHelper;
     private final BTree eventsDb;
@@ -38,26 +37,25 @@ public class EventsSchedulerWorker implements SchedulerWorker {
     }
 
     @Override
-    @Scheduled(fixedRate = Constants.SCHEDULING_FIXED_RATE, initialDelay = Constants.SCHEDULING_INITIAL_DELAY)
-    public void scheduleWork() throws Exception {
+    public SchedulerHelper getSchedulerHelper() {
+        return eventsSchedulerHelper;
+    }
 
-        DatabasesInfo eventsInfo = eventsSchedulerHelper.findBy(HdbmDatabasesDescription.EVENTS);
+    @Override
+    public HdbmDatabasesDescription getDatabaseDescription() {
+        return HdbmDatabasesDescription.EVENTS;
+    }
 
-        Long timestamp;
-        if (eventsInfo == null) {
-            eventsInfo = new DatabasesInfo();
-            eventsInfo.setHdbmDatabasesDescription(HdbmDatabasesDescription.EVENTS);
-            timestamp = 0L;
-        } else {
-            timestamp = eventsInfo.getLastProcessedTimestamp() + 1;
-        }
+    @Override
+    public BTree getDatabase() {
+        return eventsDb;
+    }
 
-        List<String> transactionalDomainEventsJsons =
-                Utils.getJsonDatabaseRecords(eventsDb, timestamp);
-
+    @Override
+    public void process(List<String> entitiesJson, DatabasesInfo dbInfo, Long timestamp) throws Exception {
         List<TransactionDomainEvents> result = new LinkedList<>();
 
-        for (String transactionalDomainEventsJson : transactionalDomainEventsJsons) {
+        for (String transactionalDomainEventsJson : entitiesJson) {
             Object mappedEntity = entityMapper.map(transactionalDomainEventsJson);
             Assert.isTrue(mappedEntity.getClass().equals(Constants.EVENTS_MAP_CLASS), "Mapped entity isn't instance of " + Constants.EVENTS_MAP_CLASS);
             TransactionDomainEvents entity = (TransactionDomainEvents) mappedEntity;
@@ -65,9 +63,8 @@ public class EventsSchedulerWorker implements SchedulerWorker {
             timestamp = entity.getTimestamp().getTime();
         }
 
-        eventsInfo.setLastProcessedTimestamp(timestamp);
+        dbInfo.setLastProcessedTimestamp(timestamp);
 
-        eventsSchedulerHelper.save(result, eventsInfo);
+        eventsSchedulerHelper.save(result, dbInfo);
     }
-
 }

@@ -1,7 +1,11 @@
 package com.imcode.tools.jdbmtosql.transfer.services.schedulers;
 
+import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
+import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.EntityMapper;
+import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerWorker;
+import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerWorker;
 import com.imcode.tools.jdbmtosql.transfer.services.schedulehelpers.DataSchedulerHelper;
 import com.imcode.tools.jdbmtosql.utils.Constants;
 import jdbm.btree.BTree;
@@ -10,11 +14,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Created by ruslan on 17.01.17.
  */
 @Component
-public class DataSchedulerWorker implements SchedulerWorker {
+public class DataSchedulerWorker extends AbstractSchedulerWorker {
 
     private final DataSchedulerHelper dataSchedulerHelper;
     private final BTree dataDb;
@@ -29,10 +35,24 @@ public class DataSchedulerWorker implements SchedulerWorker {
         this.dataEntityMapper = dataEntityMapper;
     }
 
-    @Override
-    @Scheduled(fixedRate = Constants.SCHEDULING_FIXED_RATE, initialDelay = Constants.SCHEDULING_INITIAL_DELAY)
-    public void scheduleWork() throws Exception {
 
+    @Override
+    public SchedulerHelper getSchedulerHelper() {
+        return dataSchedulerHelper;
     }
 
+    @Override
+    public HdbmDatabasesDescription getDatabaseDescription() {
+        return HdbmDatabasesDescription.DATA;
+    }
+
+    @Override
+    public BTree getDatabase() {
+        return dataDb;
+    }
+
+    @Override
+    public void process(List<String> entitiesJson, DatabasesInfo dbInfo, Long timestamp) throws Exception {
+        // TODO: 18.01.17 implement method 
+    }
 }
