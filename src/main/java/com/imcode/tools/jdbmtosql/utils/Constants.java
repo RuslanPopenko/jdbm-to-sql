@@ -2,6 +2,8 @@ package com.imcode.tools.jdbmtosql.utils;
 
 import com.imcode.tools.jdbmtosql.entities.TransactionDomainEvents;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +12,10 @@ import java.util.Map;
  * Created by ruslan on 17.01.17.
  */
 public class Constants {
+
+    public static final int MAX_OBJECTS_NUMBER_FOR_CYCLE = 100;
+
+    public static final Charset ENCODING = StandardCharsets.UTF_8;
 
     public static final int MRU_CACHE_MAX_SIZE = 1000;
     public static final int PAGE_SIZE = 16;

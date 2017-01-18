@@ -10,12 +10,12 @@ import java.io.IOException;
 /**
  * Created by ruslan on 17.01.17.
  */
-@Service
+@Service("eventsEntityMapper")
 public class EventsEntityMapper implements EntityMapper {
 
     private final ObjectMapper _objectMapper = new ObjectMapper();
 
-    public Object map(String json) throws IOException {
-       return _objectMapper.readValue(json, Constants.EVENTS_MAP_CLASS);
+    public Object map(String json) throws Exception {
+        return _objectMapper.readValue(json, Constants.EVENTS_MAP_CLASS);
     }
 }

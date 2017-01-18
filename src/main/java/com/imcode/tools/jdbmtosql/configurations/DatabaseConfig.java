@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan({"com.imcode.tools.jdbmtosql.tranfer.services.onload"})
+@ComponentScan({"com.imcode.tools.jdbmtosql.tranfer.services.dbload"})
 @EnableTransactionManagement
 @EnableJpaRepositories("com.imcode.tools.jdbmtosql.repositories")
 public class DatabaseConfig {
@@ -85,12 +85,12 @@ public class DatabaseConfig {
     }
 
     @Bean("dataDb")
-    public BTree loadDataDb() throws IOException {
+    public BTree loadDataDb() throws Exception {
         return databaseLoader.load(HdbmDatabasesDescription.DATA);
     }
 
     @Bean("eventsDb")
-    public BTree loadEventsDb() throws IOException {
+    public BTree loadEventsDb() throws Exception {
         return databaseLoader.load(HdbmDatabasesDescription.EVENTS);
     }
 

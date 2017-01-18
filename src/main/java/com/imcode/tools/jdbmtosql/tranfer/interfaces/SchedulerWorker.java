@@ -5,6 +5,6 @@ package com.imcode.tools.jdbmtosql.tranfer.interfaces;
  */
 public interface SchedulerWorker {
 
-    void scheduleWork();
+    void scheduleWork() throws Exception;
 
 }

@@ -1,4 +1,4 @@
-package com.imcode.tools.jdbmtosql.tranfer.services.onload;
+package com.imcode.tools.jdbmtosql.tranfer.services.dbload;
 
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.tranfer.interfaces.DatabaseLoader;
@@ -13,7 +13,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -25,7 +24,7 @@ public class DatabaseLoaderImpl implements DatabaseLoader {
     @Resource
     private Environment environment;
 
-    public BTree load(HdbmDatabasesDescription hdbmDatabasesDescription) throws IOException {
+    public BTree load(HdbmDatabasesDescription hdbmDatabasesDescription) throws Exception {
 
         String eventStorePath = environment.getRequiredProperty(hdbmDatabasesDescription.getPropertyKey());
         Properties properties = new Properties();

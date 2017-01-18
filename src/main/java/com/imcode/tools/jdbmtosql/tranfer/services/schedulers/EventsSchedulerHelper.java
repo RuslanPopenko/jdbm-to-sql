@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Created by ruslan on 17.01.17.
@@ -26,19 +27,15 @@ public class EventsSchedulerHelper {
         this.databasesInfoRepository = databasesInfoRepository;
     }
 
-    @Transactional
-    public TransactionDomainEvents save(TransactionDomainEvents transactionDomainEvents) {
-        return transactionDomainEventsRepository.save(transactionDomainEvents);
-    }
-
-    @Transactional
-    public DatabasesInfo save(DatabasesInfo databasesInfo) {
-        return databasesInfoRepository.save(databasesInfo);
-    }
 
     public DatabasesInfo findBy(HdbmDatabasesDescription description) {
         return databasesInfoRepository.findByHdbmDatabasesDescription(description);
     }
 
+    @Transactional
+    public void save(List<TransactionDomainEvents> transactionDomainEventsList, DatabasesInfo databasesInfo) {
+        transactionDomainEventsRepository.save(transactionDomainEventsList);
+        databasesInfoRepository.save(databasesInfo);
+    }
 
 }

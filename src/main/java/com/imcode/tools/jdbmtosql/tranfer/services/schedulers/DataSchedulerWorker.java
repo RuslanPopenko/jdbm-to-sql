@@ -13,7 +13,7 @@ public class DataSchedulerWorker implements SchedulerWorker {
 
     @Override
     @Scheduled(fixedRate = Constants.SCHEDULING_FIXED_RATE, initialDelay = Constants.SCHEDULING_INITIAL_DELAY)
-    public void scheduleWork() {
+    public void scheduleWork() throws Exception {
         // TODO: 17.01.17 create this scheduleWork
     }
 
