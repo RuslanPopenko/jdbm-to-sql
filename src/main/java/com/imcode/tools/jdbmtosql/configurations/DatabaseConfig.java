@@ -1,7 +1,7 @@
 package com.imcode.tools.jdbmtosql.configurations;
 
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
-import com.imcode.tools.jdbmtosql.tranfer.interfaces.DatabaseLoader;
+import com.imcode.tools.jdbmtosql.transfer.interfaces.DatabaseLoader;
 import jdbm.btree.BTree;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan({"com.imcode.tools.jdbmtosql.tranfer.services.dbload"})
+@ComponentScan({"com.imcode.tools.jdbmtosql.transfer.services.dbload"})
 @EnableTransactionManagement
 @EnableJpaRepositories("com.imcode.tools.jdbmtosql.repositories")
 public class DatabaseConfig {

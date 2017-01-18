@@ -1,4 +1,4 @@
-package com.imcode.tools.jdbmtosql.tranfer.interfaces;
+package com.imcode.tools.jdbmtosql.transfer.interfaces;
 
 import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;

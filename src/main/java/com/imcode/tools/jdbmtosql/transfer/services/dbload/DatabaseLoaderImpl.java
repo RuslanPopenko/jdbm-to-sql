@@ -1,7 +1,7 @@
-package com.imcode.tools.jdbmtosql.tranfer.services.dbload;
+package com.imcode.tools.jdbmtosql.transfer.services.dbload;
 
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
-import com.imcode.tools.jdbmtosql.tranfer.interfaces.DatabaseLoader;
+import com.imcode.tools.jdbmtosql.transfer.interfaces.DatabaseLoader;
 import com.imcode.tools.jdbmtosql.utils.Constants;
 import jdbm.RecordManager;
 import jdbm.RecordManagerFactory;

@@ -1,7 +1,7 @@
-package com.imcode.tools.jdbmtosql.tranfer.services.entitymappers;
+package com.imcode.tools.jdbmtosql.transfer.services.entitymappers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.imcode.tools.jdbmtosql.tranfer.interfaces.EntityMapper;
+import com.imcode.tools.jdbmtosql.transfer.interfaces.EntityMapper;
 import com.imcode.tools.jdbmtosql.utils.Constants;
 import org.json.JSONArray;
 import org.json.JSONObject;

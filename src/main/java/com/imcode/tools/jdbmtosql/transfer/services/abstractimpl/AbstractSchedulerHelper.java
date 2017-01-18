@@ -1,9 +1,9 @@
-package com.imcode.tools.jdbmtosql.tranfer.abstractimpl;
+package com.imcode.tools.jdbmtosql.transfer.services.abstractimpl;
 
 import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.repositories.DatabasesInfoRepository;
-import com.imcode.tools.jdbmtosql.tranfer.interfaces.SchedulerHelper;
+import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

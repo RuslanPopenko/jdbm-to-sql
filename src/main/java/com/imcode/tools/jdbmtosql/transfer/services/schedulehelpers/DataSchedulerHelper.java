@@ -1,7 +1,7 @@
-package com.imcode.tools.jdbmtosql.tranfer.services.schedulehelpers;
+package com.imcode.tools.jdbmtosql.transfer.services.schedulehelpers;
 
 import com.imcode.tools.jdbmtosql.repositories.DatabasesInfoRepository;
-import com.imcode.tools.jdbmtosql.tranfer.abstractimpl.AbstractSchedulerHelper;
+import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;

@@ -1,10 +1,8 @@
-package com.imcode.tools.jdbmtosql.tranfer.services.schedulers;
+package com.imcode.tools.jdbmtosql.transfer.services.schedulers;
 
-import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
-import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
-import com.imcode.tools.jdbmtosql.tranfer.interfaces.EntityMapper;
-import com.imcode.tools.jdbmtosql.tranfer.interfaces.SchedulerWorker;
-import com.imcode.tools.jdbmtosql.tranfer.services.schedulehelpers.DataSchedulerHelper;
+import com.imcode.tools.jdbmtosql.transfer.interfaces.EntityMapper;
+import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerWorker;
+import com.imcode.tools.jdbmtosql.transfer.services.schedulehelpers.DataSchedulerHelper;
 import com.imcode.tools.jdbmtosql.utils.Constants;
 import jdbm.btree.BTree;
 import org.springframework.beans.factory.annotation.Autowired;
