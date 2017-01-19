@@ -29,7 +29,7 @@ public class DataScheduledWorker extends AbstractScheduledWorker {
                                @Qualifier("dataEntityMapper") EntityMapper dataEntityMapper) {
         super(HdbmDatabasesDescription.DATA, dataDb, dataSchedulerHelper, Constants.DATA_INITIAL_BROWSE_VALUE);
         this.dataEntityMapper = dataEntityMapper;
-        this.byteBuffer =  ByteBuffer.allocate(Long.SIZE);
+        this.byteBuffer =  ByteBuffer.allocate(Long.SIZE / Byte.SIZE);
     }
 
     @Override
