@@ -35,7 +35,7 @@ public abstract class AbstractSchedulerWorker implements SchedulerWorker {
         List<String> entitiesJson =
                 getJsonDatabaseRecords(getDatabase(), timestamp);
 
-        process(entitiesJson, dbInfo, timestamp);
+        process(entitiesJson, dbInfo);
     }
 
     private List<String> getJsonDatabaseRecords(BTree db, Long timestamp) throws IOException {
@@ -57,6 +57,6 @@ public abstract class AbstractSchedulerWorker implements SchedulerWorker {
     public abstract SchedulerHelper getSchedulerHelper();
     public abstract HdbmDatabasesDescription getDatabaseDescription();
     public abstract BTree getDatabase();
-    public abstract void process(List<String> entitiesJson, DatabasesInfo dbInfo, Long timestamp) throws Exception;
+    public abstract void process(List<String> entitiesJson, DatabasesInfo dbInfo) throws Exception;
 
 }

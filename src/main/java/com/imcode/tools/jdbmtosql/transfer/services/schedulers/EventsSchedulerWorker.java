@@ -52,8 +52,9 @@ public class EventsSchedulerWorker extends AbstractSchedulerWorker {
     }
 
     @Override
-    public void process(List<String> entitiesJson, DatabasesInfo dbInfo, Long timestamp) throws Exception {
+    public void process(List<String> entitiesJson, DatabasesInfo dbInfo) throws Exception {
         List<TransactionDomainEvents> result = new LinkedList<>();
+        Long timestamp = null;
 
         for (String transactionalDomainEventsJson : entitiesJson) {
             Object mappedEntity = entityMapper.map(transactionalDomainEventsJson);

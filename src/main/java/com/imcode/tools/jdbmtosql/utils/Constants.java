@@ -32,6 +32,8 @@ public class Constants {
     public static final String KEY_OF_STREAMFLOW_TYPE = "streamflowType";
     public static final String ID_PROPERTY_NAME = "identity";
 
+    public static final String SAVE_METHOD_NAME = "save";
+
     public static final Class EVENTS_MAP_CLASS = TransactionDomainEvents.class;
     public static final Map<String, Class> DATA_MAP_CLASSES = Collections.unmodifiableMap(dataMapClasses());
 

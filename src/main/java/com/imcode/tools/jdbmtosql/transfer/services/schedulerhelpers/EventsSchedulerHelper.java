@@ -26,7 +26,7 @@ public class EventsSchedulerHelper extends AbstractSchedulerHelper {
     @Transactional
     public void save(List<TransactionDomainEvents> transactionDomainEventsList, DatabasesInfo databasesInfo) {
         transactionDomainEventsRepository.save(transactionDomainEventsList);
-        databasesInfoRepository.save(databasesInfo);
+        super.databasesInfoRepository.save(databasesInfo);
     }
 
 }
