@@ -35,7 +35,6 @@ public class DataSchedulerWorker extends AbstractSchedulerWorker {
         this.dataEntityMapper = dataEntityMapper;
     }
 
-
     @Override
     public SchedulerHelper getSchedulerHelper() {
         return dataSchedulerHelper;
@@ -53,6 +52,10 @@ public class DataSchedulerWorker extends AbstractSchedulerWorker {
 
     @Override
     public void process(List<String> entitiesJson, DatabasesInfo dbInfo, Long timestamp) throws Exception {
-        // TODO: 18.01.17 implement method 
+
+        for (String entityJson : entitiesJson) {
+            Object mappedEntity = dataEntityMapper.map(entityJson);
+
+        }
     }
 }

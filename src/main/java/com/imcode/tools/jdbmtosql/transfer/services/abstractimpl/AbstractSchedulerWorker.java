@@ -1,6 +1,8 @@
 package com.imcode.tools.jdbmtosql.transfer.services.abstractimpl;
 
 import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
+import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
+import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerWorker;
 import com.imcode.tools.jdbmtosql.utils.Constants;
 import jdbm.btree.BTree;
@@ -18,7 +20,7 @@ import java.util.List;
 public abstract class AbstractSchedulerWorker implements SchedulerWorker {
 
     @Scheduled(fixedRate = Constants.SCHEDULING_FIXED_RATE, initialDelay = Constants.SCHEDULING_INITIAL_DELAY)
-    public void scheduleWork() throws Exception {
+    public final void scheduleWork() throws Exception {
         DatabasesInfo dbInfo = getSchedulerHelper().findBy(getDatabaseDescription());
 
         Long timestamp;
@@ -51,5 +53,10 @@ public abstract class AbstractSchedulerWorker implements SchedulerWorker {
 
         return jsonDatabaseRecords;
     }
+
+    public abstract SchedulerHelper getSchedulerHelper();
+    public abstract HdbmDatabasesDescription getDatabaseDescription();
+    public abstract BTree getDatabase();
+    public abstract void process(List<String> entitiesJson, DatabasesInfo dbInfo, Long timestamp) throws Exception;
 
 }
