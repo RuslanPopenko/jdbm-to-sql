@@ -11,7 +11,7 @@ import java.util.LinkedList;
 /**
  * Created by ruslan on 17.01.17.
  */
-@Service
+@Service("eventsSchedulerHelper")
 public class EventsSchedulerHelper extends AbstractSchedulerHelper {
 
     private final TransactionDomainEventsRepository transactionDomainEventsRepository;

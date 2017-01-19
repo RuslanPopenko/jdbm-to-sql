@@ -4,6 +4,7 @@ import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.entities.TransactionDomainEvents;
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.EntityMapper;
+import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
 import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerWorker;
 import com.imcode.tools.jdbmtosql.transfer.services.schedulerhelpers.EventsSchedulerHelper;
 import com.imcode.tools.jdbmtosql.utils.Constants;
@@ -22,11 +23,11 @@ import java.util.List;
 @Component
 public class EventsSchedulerWorker extends AbstractSchedulerWorker {
 
-    private final EventsSchedulerHelper eventsSchedulerHelper;
+    private final SchedulerHelper eventsSchedulerHelper;
     private final EntityMapper eventsEntityMapper;
 
     @Autowired
-    public EventsSchedulerWorker(EventsSchedulerHelper eventsSchedulerHelper,
+    public EventsSchedulerWorker(@Qualifier("eventsSchedulerHelper") SchedulerHelper eventsSchedulerHelper,
                                  @Qualifier("eventsDb") BTree eventsDb,
                                  @Qualifier("eventsEntityMapper") EntityMapper eventsEntityMapper) {
         super(HdbmDatabasesDescription.EVENTS, eventsDb, eventsSchedulerHelper);

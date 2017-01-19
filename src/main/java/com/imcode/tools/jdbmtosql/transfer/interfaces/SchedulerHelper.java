@@ -12,4 +12,6 @@ public interface SchedulerHelper {
 
     Long save(Object target) throws Exception;
 
+    void save(Object target, DatabasesInfo databasesInfo) throws Exception;
+
 }

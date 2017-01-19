@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 /**
  * Created by ruslan on 18.01.17.
  */
-@Service
+@Service("dataSchedulerHelper")
 public class DataSchedulerHelper extends AbstractSchedulerHelper {
 
     private final Repositories repositories;

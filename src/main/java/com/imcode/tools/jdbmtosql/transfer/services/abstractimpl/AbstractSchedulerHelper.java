@@ -21,6 +21,7 @@ public abstract class AbstractSchedulerHelper implements SchedulerHelper {
         return databasesInfoRepository.findByHdbmDatabasesDescription(description);
     }
 
+    @Override
     @Transactional
     public final void save(Object target, DatabasesInfo databasesInfo) throws Exception {
         Long timestamp = save(target);
