@@ -3,7 +3,6 @@ package com.imcode.tools.jdbmtosql.transfer.services.schedulers;
 import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.EntityMapper;
-import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
 import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerWorker;
 import com.imcode.tools.jdbmtosql.transfer.services.schedulerhelpers.DataSchedulerHelper;
 import jdbm.btree.BTree;

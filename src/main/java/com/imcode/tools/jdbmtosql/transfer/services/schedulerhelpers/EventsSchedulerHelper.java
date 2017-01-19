@@ -3,13 +3,10 @@ package com.imcode.tools.jdbmtosql.transfer.services.schedulerhelpers;
 import com.imcode.tools.jdbmtosql.entities.TransactionDomainEvents;
 import com.imcode.tools.jdbmtosql.repositories.TransactionDomainEventsRepository;
 import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerHelper;
-import com.imcode.tools.jdbmtosql.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by ruslan on 17.01.17.

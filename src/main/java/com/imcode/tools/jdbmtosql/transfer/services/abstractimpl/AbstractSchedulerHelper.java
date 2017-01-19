@@ -7,7 +7,6 @@ import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 /**
  * Created by ruslan on 18.01.17.
