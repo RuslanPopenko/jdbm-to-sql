@@ -24,7 +24,7 @@ public class DataEntityMapper implements EntityMapper {
         String typeName = jsonObject.getString(Constants.KEY_OF_ENTITY_TYPE);
         Class mapClass = Constants.DATA_MAP_CLASSES.get(typeName);
 
-        Assert.notNull(mapClass, "Mapping for " + typeName + "isn't exist!");
+        Assert.notNull(mapClass, "Mapping for " + typeName + "doesn't exist!");
 
         JSONObject baseObject = jsonObject.getJSONObject(Constants.KEY_OF_OBJECT_PROPERTIES_KEY);
 
