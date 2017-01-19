@@ -47,6 +47,7 @@ public abstract class AbstractScheduledWorker implements ScheduledWorker {
             dbInfo.setHdbmDatabasesDescription(databaseDescription);
             browseValue = initialBrowseValue;
         } else {
+            // TODO: 19.01.17 In every implementation
             browseValue = wrapBrowseValue(dbInfo);
         }
 
