@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import javax.annotation.Resource;
+import java.nio.ByteBuffer;
 import java.util.Properties;
 
 @Configuration
@@ -28,7 +29,7 @@ public class DatabaseConfig {
     @Resource
     private Environment environment;
 
-    final DatabaseLoader databaseLoader;
+    private final DatabaseLoader databaseLoader;
 
     @Autowired
     public DatabaseConfig(DatabaseLoader databaseLoader) {

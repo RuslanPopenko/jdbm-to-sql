@@ -43,6 +43,7 @@ public class DataScheduledWorker extends AbstractScheduledWorker {
     }
 
     @Override
+    // TODO: 19.01.17 Wrong, rewrite it
     public Object wrapBrowseValue(DatabasesInfo dbInfo) {
         return longToBytes(dbInfo.getBrowseValue());
     }
