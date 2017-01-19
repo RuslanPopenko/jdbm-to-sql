@@ -28,7 +28,7 @@ public class EventsScheduledWorker extends AbstractScheduledWorker {
     public EventsScheduledWorker(@Qualifier("eventsSchedulerHelper") SchedulerHelper eventsSchedulerHelper,
                                  @Qualifier("eventsDb") BTree eventsDb,
                                  @Qualifier("eventsEntityMapper") EntityMapper eventsEntityMapper) {
-        super(HdbmDatabasesDescription.EVENTS, eventsDb, eventsSchedulerHelper);
+        super(HdbmDatabasesDescription.EVENTS, eventsDb, eventsSchedulerHelper, Constants.EVENTS_INITIAL_BROWSE_VALUE);
         this.eventsEntityMapper = eventsEntityMapper;
     }
 
@@ -44,5 +44,10 @@ public class EventsScheduledWorker extends AbstractScheduledWorker {
         }
 
         super.schedulerHelper.save(result, dbInfo);
+    }
+
+    @Override
+    public Object wrapBrowseValue(DatabasesInfo dbInfo) {
+        return dbInfo.getBrowseValue() + 1;
     }
 }

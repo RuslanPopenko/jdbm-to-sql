@@ -22,39 +22,43 @@ public abstract class AbstractScheduledWorker implements ScheduledWorker {
     protected final HdbmDatabasesDescription databaseDescription;
     protected final BTree database;
     protected final SchedulerHelper schedulerHelper;
+    protected final Object initialBrowseValue;
 
     public AbstractScheduledWorker(HdbmDatabasesDescription databaseDescription,
                                    BTree database,
-                                   SchedulerHelper schedulerHelper) {
+                                   SchedulerHelper schedulerHelper,
+                                   Object initialBrowseValue) {
         this.databaseDescription = databaseDescription;
         this.database = database;
         this.schedulerHelper = schedulerHelper;
+        this.initialBrowseValue = initialBrowseValue;
     }
 
     public abstract void process(List<String> entitiesJson, DatabasesInfo dbInfo) throws Exception;
+    public abstract Object wrapBrowseValue(DatabasesInfo dbInfo);
 
     @Scheduled(fixedRate = Constants.SCHEDULING_FIXED_RATE, initialDelay = Constants.SCHEDULING_INITIAL_DELAY)
     public final void scheduledWork() throws Exception {
         DatabasesInfo dbInfo = schedulerHelper.findBy(databaseDescription);
 
-        Long timestamp;
+        Object browseValue;
         if (dbInfo == null) {
             dbInfo = new DatabasesInfo();
             dbInfo.setHdbmDatabasesDescription(databaseDescription);
-            timestamp = 0L;
+            browseValue = initialBrowseValue;
         } else {
-            timestamp = dbInfo.getLastProcessedTimestamp() + 1;
+            browseValue = wrapBrowseValue(dbInfo);
         }
 
         List<String> entitiesJson =
-                getJsonDatabaseRecords(timestamp);
+                getJsonDatabaseRecords(browseValue);
 
         process(entitiesJson, dbInfo);
     }
 
-    private List<String> getJsonDatabaseRecords(Long timestamp) throws IOException {
+    private List<String> getJsonDatabaseRecords(Object browseValue) throws IOException {
 
-        final TupleBrowser browser = database.browse(timestamp);
+        final TupleBrowser browser = database.browse(browseValue);
 
         Tuple tuple = new Tuple();
 

@@ -21,6 +21,9 @@ public class Constants {
     public static final int PAGE_SIZE = 16;
     public static final String NAMED_OBJECT_VALUE = "index";
 
+    public static final Long EVENTS_INITIAL_BROWSE_VALUE = 0L;
+    public static final byte [] DATA_INITIAL_BROWSE_VALUE = new byte[0];
+
     public static final long SCHEDULING_FIXED_RATE = 100L;
     public static final long SCHEDULING_INITIAL_DELAY = 1000L;
 
