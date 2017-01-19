@@ -19,28 +19,42 @@ import java.util.List;
  */
 public abstract class AbstractSchedulerWorker implements SchedulerWorker {
 
+    private final HdbmDatabasesDescription databaseDescription;
+    private final BTree database;
+    private final SchedulerHelper schedulerHelper;
+
+    public AbstractSchedulerWorker(HdbmDatabasesDescription databaseDescription,
+                                   BTree database,
+                                   SchedulerHelper schedulerHelper) {
+        this.databaseDescription = databaseDescription;
+        this.database = database;
+        this.schedulerHelper = schedulerHelper;
+    }
+
+    public abstract void process(List<String> entitiesJson, DatabasesInfo dbInfo) throws Exception;
+
     @Scheduled(fixedRate = Constants.SCHEDULING_FIXED_RATE, initialDelay = Constants.SCHEDULING_INITIAL_DELAY)
     public final void scheduledWork() throws Exception {
-        DatabasesInfo dbInfo = getSchedulerHelper().findBy(getDatabaseDescription());
+        DatabasesInfo dbInfo = schedulerHelper.findBy(databaseDescription);
 
         Long timestamp;
         if (dbInfo == null) {
             dbInfo = new DatabasesInfo();
-            dbInfo.setHdbmDatabasesDescription(getDatabaseDescription());
+            dbInfo.setHdbmDatabasesDescription(databaseDescription);
             timestamp = 0L;
         } else {
             timestamp = dbInfo.getLastProcessedTimestamp() + 1;
         }
 
         List<String> entitiesJson =
-                getJsonDatabaseRecords(getDatabase(), timestamp);
+                getJsonDatabaseRecords(timestamp);
 
         process(entitiesJson, dbInfo);
     }
 
-    private List<String> getJsonDatabaseRecords(BTree db, Long timestamp) throws IOException {
+    private List<String> getJsonDatabaseRecords(Long timestamp) throws IOException {
 
-        final TupleBrowser browser = db.browse(timestamp);
+        final TupleBrowser browser = database.browse(timestamp);
 
         Tuple tuple = new Tuple();
 
@@ -54,9 +68,5 @@ public abstract class AbstractSchedulerWorker implements SchedulerWorker {
         return jsonDatabaseRecords;
     }
 
-    public abstract SchedulerHelper getSchedulerHelper();
-    public abstract HdbmDatabasesDescription getDatabaseDescription();
-    public abstract BTree getDatabase();
-    public abstract void process(List<String> entitiesJson, DatabasesInfo dbInfo) throws Exception;
 
 }

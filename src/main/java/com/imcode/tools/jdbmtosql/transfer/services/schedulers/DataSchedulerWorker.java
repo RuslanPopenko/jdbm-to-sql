@@ -20,31 +20,15 @@ import java.util.List;
 public class DataSchedulerWorker extends AbstractSchedulerWorker {
 
     private final DataSchedulerHelper dataSchedulerHelper;
-    private final BTree dataDb;
     private final EntityMapper dataEntityMapper;
 
     @Autowired
     public DataSchedulerWorker(DataSchedulerHelper dataSchedulerHelper,
                                  @Qualifier("dataDb") BTree dataDb,
                                  @Qualifier("dataEntityMapper") EntityMapper dataEntityMapper) {
+        super(HdbmDatabasesDescription.DATA, dataDb, dataSchedulerHelper);
         this.dataSchedulerHelper = dataSchedulerHelper;
-        this.dataDb = dataDb;
         this.dataEntityMapper = dataEntityMapper;
-    }
-
-    @Override
-    public SchedulerHelper getSchedulerHelper() {
-        return dataSchedulerHelper;
-    }
-
-    @Override
-    public HdbmDatabasesDescription getDatabaseDescription() {
-        return HdbmDatabasesDescription.DATA;
-    }
-
-    @Override
-    public BTree getDatabase() {
-        return dataDb;
     }
 
     @Override
