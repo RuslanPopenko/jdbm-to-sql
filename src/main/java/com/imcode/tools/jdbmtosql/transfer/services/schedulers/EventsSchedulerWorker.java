@@ -37,17 +37,12 @@ public class EventsSchedulerWorker extends AbstractSchedulerWorker {
     @Override
     public void process(List<String> entitiesJson, DatabasesInfo dbInfo) throws Exception {
         List<TransactionDomainEvents> result = new LinkedList<>();
-        Long timestamp = null;
-
         for (String transactionalDomainEventsJson : entitiesJson) {
             Object mappedEntity = eventsEntityMapper.map(transactionalDomainEventsJson);
             Assert.isTrue(mappedEntity.getClass().equals(Constants.EVENTS_MAP_CLASS), "Mapped entity isn't instance of " + Constants.EVENTS_MAP_CLASS);
             TransactionDomainEvents entity = (TransactionDomainEvents) mappedEntity;
             result.add(entity);
-            timestamp = entity.getTimestamp().getTime();
         }
-
-        dbInfo.setLastProcessedTimestamp(timestamp);
 
         eventsSchedulerHelper.save(result, dbInfo);
     }

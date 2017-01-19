@@ -6,6 +6,7 @@ import com.imcode.tools.jdbmtosql.repositories.DatabasesInfoRepository;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -14,10 +15,17 @@ import java.util.List;
 public abstract class AbstractSchedulerHelper implements SchedulerHelper {
 
     @Autowired
-    protected DatabasesInfoRepository databasesInfoRepository;
+    private DatabasesInfoRepository databasesInfoRepository;
 
     @Override
-    public DatabasesInfo findBy(HdbmDatabasesDescription description) {
+    public final DatabasesInfo findBy(HdbmDatabasesDescription description) {
         return databasesInfoRepository.findByHdbmDatabasesDescription(description);
+    }
+
+    @Transactional
+    public final void save(Object target, DatabasesInfo databasesInfo) throws Exception {
+        Long timestamp = save(target);
+        databasesInfo.setLastProcessedTimestamp(timestamp);
+        databasesInfoRepository.save(databasesInfo);
     }
 }

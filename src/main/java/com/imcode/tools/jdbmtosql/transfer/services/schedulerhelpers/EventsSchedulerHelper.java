@@ -1,13 +1,14 @@
 package com.imcode.tools.jdbmtosql.transfer.services.schedulerhelpers;
 
-import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.entities.TransactionDomainEvents;
 import com.imcode.tools.jdbmtosql.repositories.TransactionDomainEventsRepository;
 import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerHelper;
+import com.imcode.tools.jdbmtosql.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
-import javax.transaction.Transactional;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,10 +24,11 @@ public class EventsSchedulerHelper extends AbstractSchedulerHelper {
         this.transactionDomainEventsRepository = transactionDomainEventsRepository;
     }
 
-    @Transactional
-    public void save(List<TransactionDomainEvents> transactionDomainEventsList, DatabasesInfo databasesInfo) {
-        transactionDomainEventsRepository.save(transactionDomainEventsList);
-        super.databasesInfoRepository.save(databasesInfo);
+    @Override
+    public Long save(Object target) throws Exception {
+        LinkedList<TransactionDomainEvents> result = (LinkedList<TransactionDomainEvents>) target;
+        transactionDomainEventsRepository.save(result);
+        return result.peekLast().getTimestamp().getTime();
     }
 
 }

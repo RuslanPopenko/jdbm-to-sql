@@ -25,14 +25,12 @@ public class DataSchedulerHelper extends AbstractSchedulerHelper {
         repositories = new Repositories(applicationContext);
     }
 
-    @Transactional
-    public void save(Object mappedEntity, DatabasesInfo dbInfo) throws Exception {
-        Class<?> mappedEntityClass = mappedEntity.getClass();
+    @Override
+    public Long save(Object target) throws Exception {
+        Class<?> mappedEntityClass = target.getClass();
         Object repositoryFor = repositories.getRepositoryFor(mappedEntityClass);
         Method method = repositoryFor.getClass().getMethod(Constants.SAVE_METHOD_NAME, mappedEntityClass);
-        ReflectionUtils.invokeMethod(method, mappedEntity);
-        Long modified = (Long) mappedEntityClass.getField(Constants.KEY_OF_MODIFIED).get(mappedEntity);
-        dbInfo.setLastProcessedTimestamp(modified);
-        super.databasesInfoRepository.save(dbInfo);
+        ReflectionUtils.invokeMethod(method, target);
+        return (Long) mappedEntityClass.getField(Constants.KEY_OF_MODIFIED).get(target);
     }
 }

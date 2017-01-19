@@ -10,4 +10,6 @@ public interface SchedulerHelper {
 
     DatabasesInfo findBy(HdbmDatabasesDescription description);
 
+    Long save(Object target) throws Exception;
+
 }
