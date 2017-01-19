@@ -6,7 +6,7 @@ import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.EntityMapper;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
 import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerWorker;
-import com.imcode.tools.jdbmtosql.transfer.services.schedulehelpers.EventsSchedulerHelper;
+import com.imcode.tools.jdbmtosql.transfer.services.schedulerhelpers.EventsSchedulerHelper;
 import com.imcode.tools.jdbmtosql.utils.Constants;
 import jdbm.btree.BTree;
 import org.springframework.beans.factory.annotation.Autowired;

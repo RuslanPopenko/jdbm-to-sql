@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 @EnableAsync
 @Import({DatabaseConfig.class})
 @ComponentScan({"com.imcode.tools.jdbmtosql.transfer.services.entitymappers",
-        "com.imcode.tools.jdbmtosql.transfer.services.schedulehelpers",
+        "com.imcode.tools.jdbmtosql.transfer.services.schedulerhelpers",
         "com.imcode.tools.jdbmtosql.transfer.services.schedulers"})
 @PropertySource("classpath:application.properties")
 public class TaskConfig implements SchedulingConfigurer {
