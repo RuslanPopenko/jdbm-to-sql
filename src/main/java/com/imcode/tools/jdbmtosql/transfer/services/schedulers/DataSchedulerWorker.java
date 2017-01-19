@@ -18,7 +18,6 @@ import java.util.List;
 @Component
 public class DataSchedulerWorker extends AbstractSchedulerWorker {
 
-    private final SchedulerHelper dataSchedulerHelper;
     private final EntityMapper dataEntityMapper;
 
     @Autowired
@@ -26,7 +25,6 @@ public class DataSchedulerWorker extends AbstractSchedulerWorker {
                                @Qualifier("dataDb") BTree dataDb,
                                @Qualifier("dataEntityMapper") EntityMapper dataEntityMapper) {
         super(HdbmDatabasesDescription.DATA, dataDb, dataSchedulerHelper);
-        this.dataSchedulerHelper = dataSchedulerHelper;
         this.dataEntityMapper = dataEntityMapper;
     }
 
@@ -35,7 +33,7 @@ public class DataSchedulerWorker extends AbstractSchedulerWorker {
 
         for (String entityJson : entitiesJson) {
             Object mappedEntity =  dataEntityMapper.map(entityJson);
-            dataSchedulerHelper.save(mappedEntity, dbInfo);
+            super.schedulerHelper.save(mappedEntity, dbInfo);
         }
 
     }

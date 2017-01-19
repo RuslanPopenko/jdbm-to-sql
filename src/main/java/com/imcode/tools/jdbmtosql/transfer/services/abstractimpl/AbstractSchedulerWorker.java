@@ -19,9 +19,9 @@ import java.util.List;
  */
 public abstract class AbstractSchedulerWorker implements SchedulerWorker {
 
-    private final HdbmDatabasesDescription databaseDescription;
-    private final BTree database;
-    private final SchedulerHelper schedulerHelper;
+    protected final HdbmDatabasesDescription databaseDescription;
+    protected final BTree database;
+    protected final SchedulerHelper schedulerHelper;
 
     public AbstractSchedulerWorker(HdbmDatabasesDescription databaseDescription,
                                    BTree database,

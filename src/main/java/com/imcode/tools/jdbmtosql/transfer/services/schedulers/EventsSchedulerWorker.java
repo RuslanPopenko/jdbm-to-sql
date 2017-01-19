@@ -6,7 +6,6 @@ import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.EntityMapper;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
 import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerWorker;
-import com.imcode.tools.jdbmtosql.transfer.services.schedulerhelpers.EventsSchedulerHelper;
 import com.imcode.tools.jdbmtosql.utils.Constants;
 import jdbm.btree.BTree;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ import java.util.List;
 @Component
 public class EventsSchedulerWorker extends AbstractSchedulerWorker {
 
-    private final SchedulerHelper eventsSchedulerHelper;
     private final EntityMapper eventsEntityMapper;
 
     @Autowired
@@ -31,12 +29,12 @@ public class EventsSchedulerWorker extends AbstractSchedulerWorker {
                                  @Qualifier("eventsDb") BTree eventsDb,
                                  @Qualifier("eventsEntityMapper") EntityMapper eventsEntityMapper) {
         super(HdbmDatabasesDescription.EVENTS, eventsDb, eventsSchedulerHelper);
-        this.eventsSchedulerHelper = eventsSchedulerHelper;
         this.eventsEntityMapper = eventsEntityMapper;
     }
 
     @Override
     public void process(List<String> entitiesJson, DatabasesInfo dbInfo) throws Exception {
+
         List<TransactionDomainEvents> result = new LinkedList<>();
         for (String transactionalDomainEventsJson : entitiesJson) {
             Object mappedEntity = eventsEntityMapper.map(transactionalDomainEventsJson);
@@ -45,6 +43,6 @@ public class EventsSchedulerWorker extends AbstractSchedulerWorker {
             result.add(entity);
         }
 
-        eventsSchedulerHelper.save(result, dbInfo);
+        super.schedulerHelper.save(result, dbInfo);
     }
 }
