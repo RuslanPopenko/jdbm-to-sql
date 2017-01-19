@@ -53,9 +53,5 @@ public class DataSchedulerWorker extends AbstractSchedulerWorker {
     @Override
     public void process(List<String> entitiesJson, DatabasesInfo dbInfo, Long timestamp) throws Exception {
 
-        for (String entityJson : entitiesJson) {
-            Object mappedEntity = dataEntityMapper.map(entityJson);
-
-        }
     }
 }

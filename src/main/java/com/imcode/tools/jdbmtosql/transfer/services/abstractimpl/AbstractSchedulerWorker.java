@@ -20,7 +20,7 @@ import java.util.List;
 public abstract class AbstractSchedulerWorker implements SchedulerWorker {
 
     @Scheduled(fixedRate = Constants.SCHEDULING_FIXED_RATE, initialDelay = Constants.SCHEDULING_INITIAL_DELAY)
-    public final void scheduleWork() throws Exception {
+    public final void scheduledWork() throws Exception {
         DatabasesInfo dbInfo = getSchedulerHelper().findBy(getDatabaseDescription());
 
         Long timestamp;
