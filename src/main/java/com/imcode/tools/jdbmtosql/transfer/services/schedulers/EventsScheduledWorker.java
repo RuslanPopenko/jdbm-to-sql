@@ -5,7 +5,7 @@ import com.imcode.tools.jdbmtosql.entities.TransactionDomainEvents;
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.EntityMapper;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
-import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerWorker;
+import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractScheduledWorker;
 import com.imcode.tools.jdbmtosql.utils.Constants;
 import jdbm.btree.BTree;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +20,12 @@ import java.util.List;
  * Created by ruslan on 17.01.17.
  */
 @Component
-public class EventsSchedulerWorker extends AbstractSchedulerWorker {
+public class EventsScheduledWorker extends AbstractScheduledWorker {
 
     private final EntityMapper eventsEntityMapper;
 
     @Autowired
-    public EventsSchedulerWorker(@Qualifier("eventsSchedulerHelper") SchedulerHelper eventsSchedulerHelper,
+    public EventsScheduledWorker(@Qualifier("eventsSchedulerHelper") SchedulerHelper eventsSchedulerHelper,
                                  @Qualifier("eventsDb") BTree eventsDb,
                                  @Qualifier("eventsEntityMapper") EntityMapper eventsEntityMapper) {
         super(HdbmDatabasesDescription.EVENTS, eventsDb, eventsSchedulerHelper);

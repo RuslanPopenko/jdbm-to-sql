@@ -4,7 +4,7 @@ import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.EntityMapper;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
-import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerWorker;
+import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractScheduledWorker;
 import jdbm.btree.BTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,12 +16,12 @@ import java.util.List;
  * Created by ruslan on 17.01.17.
  */
 @Component
-public class DataSchedulerWorker extends AbstractSchedulerWorker {
+public class DataScheduledWorker extends AbstractScheduledWorker {
 
     private final EntityMapper dataEntityMapper;
 
     @Autowired
-    public DataSchedulerWorker(@Qualifier("dataSchedulerHelper") SchedulerHelper dataSchedulerHelper,
+    public DataScheduledWorker(@Qualifier("dataSchedulerHelper") SchedulerHelper dataSchedulerHelper,
                                @Qualifier("dataDb") BTree dataDb,
                                @Qualifier("dataEntityMapper") EntityMapper dataEntityMapper) {
         super(HdbmDatabasesDescription.DATA, dataDb, dataSchedulerHelper);

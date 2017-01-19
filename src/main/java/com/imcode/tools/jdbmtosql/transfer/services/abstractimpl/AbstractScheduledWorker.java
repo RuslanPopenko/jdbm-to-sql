@@ -3,7 +3,7 @@ package com.imcode.tools.jdbmtosql.transfer.services.abstractimpl;
 import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
-import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerWorker;
+import com.imcode.tools.jdbmtosql.transfer.interfaces.ScheduledWorker;
 import com.imcode.tools.jdbmtosql.utils.Constants;
 import jdbm.btree.BTree;
 import jdbm.helper.Tuple;
@@ -17,13 +17,13 @@ import java.util.List;
 /**
  * Created by ruslan on 18.01.17.
  */
-public abstract class AbstractSchedulerWorker implements SchedulerWorker {
+public abstract class AbstractScheduledWorker implements ScheduledWorker {
 
     protected final HdbmDatabasesDescription databaseDescription;
     protected final BTree database;
     protected final SchedulerHelper schedulerHelper;
 
-    public AbstractSchedulerWorker(HdbmDatabasesDescription databaseDescription,
+    public AbstractScheduledWorker(HdbmDatabasesDescription databaseDescription,
                                    BTree database,
                                    SchedulerHelper schedulerHelper) {
         this.databaseDescription = databaseDescription;
