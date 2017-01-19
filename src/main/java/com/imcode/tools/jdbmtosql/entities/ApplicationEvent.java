@@ -12,29 +12,29 @@ import java.util.Date;
 @Entity
 public class ApplicationEvent extends AbstractIdentity<String> implements Serializable {
 
-    @Column(columnDefinition = "text")
+    @Column
     private String usecase;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String name;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String entity;
 
     @Column(name = "on_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date on;
 
-    @Column(columnDefinition = "text", name = "by_user")
+    @Column(name = "by_user")
     private String by;
 
     @Column(columnDefinition = "text")
     private String parameters;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String entityType;
 
-    @Column(columnDefinition = "text")
+    @Column
     private String version;
 
     public String getUsecase() {

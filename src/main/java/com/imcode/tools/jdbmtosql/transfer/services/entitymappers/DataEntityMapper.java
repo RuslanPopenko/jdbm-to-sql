@@ -23,10 +23,14 @@ public class DataEntityMapper implements EntityMapper {
 
         JSONObject baseObject = jsonObject.getJSONObject(Constants.KEY_OF_OBJECT_PROPERTIES_KEY);
 
+        baseObject.put(Constants.KEY_OF_MODIFIED, Long.valueOf(jsonObject.getLong(Constants.KEY_OF_MODIFIED)));
+
         addAssociations(baseObject, jsonObject);
         addManyAssociations(baseObject, jsonObject);
 
         String typeName = jsonObject.getString(Constants.KEY_OF_ENTITY_TYPE);
+
+        baseObject.put(Constants.KEY_OF_STREAMFLOW_TYPE, typeName);
 
         Class mapClass = Constants.DATA_MAP_CLASSES.get(typeName);
 

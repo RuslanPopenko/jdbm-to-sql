@@ -28,6 +28,8 @@ public class Constants {
     public static final String KEY_OF_OBJECT_ASSOCIATIONS_KEY = "associations";
     public static final String KEY_OF_OBJECT_MANY_ASSOCIATIONS_KEY = "manyassociations";
     public static final String KEY_OF_ENTITY_TYPE = "type";
+    public static final String KEY_OF_MODIFIED = "modified";
+    public static final String KEY_OF_STREAMFLOW_TYPE = "streamflowType";
     public static final String ID_PROPERTY_NAME = "identity";
 
     public static final Class EVENTS_MAP_CLASS = TransactionDomainEvents.class;

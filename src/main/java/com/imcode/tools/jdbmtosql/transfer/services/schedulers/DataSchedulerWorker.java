@@ -4,14 +4,11 @@ import com.imcode.tools.jdbmtosql.entities.DatabasesInfo;
 import com.imcode.tools.jdbmtosql.enums.HdbmDatabasesDescription;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.EntityMapper;
 import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
-import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerWorker;
 import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractSchedulerWorker;
 import com.imcode.tools.jdbmtosql.transfer.services.schedulehelpers.DataSchedulerHelper;
-import com.imcode.tools.jdbmtosql.utils.Constants;
 import jdbm.btree.BTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -52,6 +49,11 @@ public class DataSchedulerWorker extends AbstractSchedulerWorker {
 
     @Override
     public void process(List<String> entitiesJson, DatabasesInfo dbInfo, Long timestamp) throws Exception {
+
+        for (String entityJson : entitiesJson) {
+            Object mappedEntity =  dataEntityMapper.map(entityJson);
+
+        }
 
     }
 }

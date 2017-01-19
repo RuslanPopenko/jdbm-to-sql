@@ -1,6 +1,6 @@
 package com.imcode.tools.jdbmtosql.entities;
 
-import com.imcode.tools.jdbmtosql.entities.superclasses.LongIdEntity;
+import com.imcode.tools.jdbmtosql.entities.superclasses.AbstractIdentity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +13,7 @@ import java.util.List;
  * with what happened in that transaction.
  */
 @Entity
-public class TransactionDomainEvents extends LongIdEntity implements Serializable{
+public class TransactionDomainEvents extends AbstractIdentity<Long> implements Serializable{
 
     // Timestamp when the events were stored in the EventStore
     // Note that if events are sent from one store to another this timestamp
@@ -24,7 +24,7 @@ public class TransactionDomainEvents extends LongIdEntity implements Serializabl
 
     // List of events for this transaction
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = ApplicationEvent.class)
-    @JoinColumn(name = "transaction_domain_events_id")
+    @JoinColumn(name = "transaction_domain_events_identity")
     private List<ApplicationEvent> events;
 
     public Date getTimestamp() {
