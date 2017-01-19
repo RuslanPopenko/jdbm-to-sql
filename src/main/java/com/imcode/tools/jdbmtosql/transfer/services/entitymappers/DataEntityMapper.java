@@ -6,6 +6,7 @@ import com.imcode.tools.jdbmtosql.utils.Constants;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.Set;
 
@@ -20,19 +21,19 @@ public class DataEntityMapper implements EntityMapper {
     @Override
     public Object map(String json) throws Exception {
         JSONObject jsonObject = new JSONObject(json);
+        String typeName = jsonObject.getString(Constants.KEY_OF_ENTITY_TYPE);
+        Class mapClass = Constants.DATA_MAP_CLASSES.get(typeName);
+
+        Assert.notNull(mapClass, "Mapping for " + typeName + "isn't exist!");
 
         JSONObject baseObject = jsonObject.getJSONObject(Constants.KEY_OF_OBJECT_PROPERTIES_KEY);
 
         baseObject.put(Constants.KEY_OF_MODIFIED, Long.valueOf(jsonObject.getLong(Constants.KEY_OF_MODIFIED)));
+        baseObject.put(Constants.KEY_OF_STREAMFLOW_TYPE, typeName);
 
         addAssociations(baseObject, jsonObject);
         addManyAssociations(baseObject, jsonObject);
 
-        String typeName = jsonObject.getString(Constants.KEY_OF_ENTITY_TYPE);
-
-        baseObject.put(Constants.KEY_OF_STREAMFLOW_TYPE, typeName);
-
-        Class mapClass = Constants.DATA_MAP_CLASSES.get(typeName);
 
         return _objectMapper.readValue(baseObject.toString(), mapClass);
     }
