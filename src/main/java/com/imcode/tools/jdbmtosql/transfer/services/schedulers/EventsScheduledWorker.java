@@ -8,11 +8,14 @@ import com.imcode.tools.jdbmtosql.transfer.interfaces.SchedulerHelper;
 import com.imcode.tools.jdbmtosql.transfer.services.abstractimpl.AbstractScheduledWorker;
 import com.imcode.tools.jdbmtosql.utils.Constants;
 import jdbm.btree.BTree;
+import jdbm.helper.Tuple;
+import jdbm.helper.TupleBrowser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +36,29 @@ public class EventsScheduledWorker extends AbstractScheduledWorker {
     }
 
     @Override
+    protected Object getBrowseValue(DatabasesInfo dbInfo) {
+        return dbInfo.getEventsLastTimestamp();
+    }
+
+    @Override
+    protected final List<String> getJsonDatabaseRecords(Object browseValue) throws Exception {
+
+        final TupleBrowser browser = database.browse(browseValue);
+
+        Tuple tuple = new Tuple();
+
+        List<String> jsonDatabaseRecords = new LinkedList<>();
+
+        for (int i = 0; (i < Constants.MAX_OBJECTS_NUMBER_FOR_CYCLE) && browser.getNext(tuple); i++) {
+
+            byte[] jsonData = (byte[]) tuple.getValue();
+            jsonDatabaseRecords.add(new String(jsonData, Constants.ENCODING));
+        }
+
+        return jsonDatabaseRecords;
+    }
+
+    @Override
     public void process(List<String> entitiesJson, DatabasesInfo dbInfo) throws Exception {
 
         List<TransactionDomainEvents> result = new LinkedList<>();
@@ -46,8 +72,4 @@ public class EventsScheduledWorker extends AbstractScheduledWorker {
         super.schedulerHelper.save(result, dbInfo);
     }
 
-    @Override
-    public Object wrapBrowseValue(DatabasesInfo dbInfo) {
-        return dbInfo.getBrowseValue() + 1;
-    }
 }

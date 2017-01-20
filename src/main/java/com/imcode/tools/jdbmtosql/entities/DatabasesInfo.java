@@ -20,7 +20,10 @@ public class DatabasesInfo extends AbstractIdentity<Long> implements Serializabl
     private HdbmDatabasesDescription hdbmDatabasesDescription;
 
     @Column
-    private Long browseValue;
+    private Long eventsLastTimestamp;
+
+    @Column
+    private String dataLastIdentity;
 
     public HdbmDatabasesDescription getHdbmDatabasesDescription() {
         return hdbmDatabasesDescription;
@@ -30,11 +33,19 @@ public class DatabasesInfo extends AbstractIdentity<Long> implements Serializabl
         this.hdbmDatabasesDescription = hdbmDatabasesDescription;
     }
 
-    public Long getBrowseValue() {
-        return browseValue;
+    public Long getEventsLastTimestamp() {
+        return eventsLastTimestamp;
     }
 
-    public void setBrowseValue(Long browseValue) {
-        this.browseValue = browseValue;
+    public void setEventsLastTimestamp(Long eventsLastTimestamp) {
+        this.eventsLastTimestamp = eventsLastTimestamp;
+    }
+
+    public String getDataLastIdentity() {
+        return dataLastIdentity;
+    }
+
+    public void setDataLastIdentity(String dataLastIdentity) {
+        this.dataLastIdentity = dataLastIdentity;
     }
 }
