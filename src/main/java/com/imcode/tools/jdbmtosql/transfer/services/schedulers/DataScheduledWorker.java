@@ -30,16 +30,6 @@ public class DataScheduledWorker extends AbstractScheduledWorker {
     }
 
     @Override
-    public Object getBrowseValue(DatabasesInfo dbInfo) {
-        return null;
-    }
-
-    @Override
-    protected List<String> getJsonDatabaseRecords(Object browseValue) throws Exception {
-        return null;
-    }
-
-    @Override
     public void process(List<String> entitiesJson, DatabasesInfo dbInfo) throws Exception {
 
         for (String entityJson : entitiesJson) {
@@ -47,6 +37,12 @@ public class DataScheduledWorker extends AbstractScheduledWorker {
             super.schedulerHelper.save(mappedEntity, dbInfo);
         }
 
+    }
+
+    @Override
+    // TODO: 19.01.17
+    public Object wrapBrowseValue(DatabasesInfo dbInfo) {
+        return null;
     }
 
 }
